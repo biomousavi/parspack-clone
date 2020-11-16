@@ -1,34 +1,41 @@
 <template>
-  <nav id="nav" class="flex-row align-center trans justify-between">
-    <div class="nav-logo">
-      <Logo />
-      <img src="@/assets/img/nav-logo.png" alt="parspack-logo" />
+  <nav id="nav" class="flex-column align-center trans justify-center">
+    <div class="nav-container flex-row align-center justify-between">
+      <div class="nav-logo">
+        <Logo />
+        <img src="@/assets/img/nav-logo.png" alt="parspack-logo" />
+      </div>
+
+      <ul class="nav-links trans justify-between flex-row vazir">
+        <li class="nav-link trans" v-for="(link, index) in links" :key="index">
+          <a
+            @click="onLinkClick"
+            v-if="link.childs.length"
+            class="with-child"
+            >{{ link.title }}</a
+          >
+          <a v-else>{{ link.title }}</a>
+
+          <ul v-if="link.childs.length" class="trans child-links">
+            <li class="child-link" v-for="child of link.childs" :key="child">
+              <a class="trans vazir" href="#"> {{ child }}</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+
+      <div class="nav-buttons flex-row vazir-bold">
+        <a class="trans-long" href="#">ورود</a>
+        <a class="trans-long" href="tel:02141807">
+          <span>۴۱۸۰۷</span>
+          <span><Telephone /></span
+        ></a>
+      </div>
+
+      <div @click="onToggle" id="backdrop"></div>
+
+      <button @click="onToggle" class="nav-toggle"></button>
     </div>
-
-    <ul class="nav-links trans justify-between flex-row vazir">
-      <li class="nav-link" v-for="(link, index) in links" :key="index">
-        <a v-if="link.childs.length" class="with-child" href="#">{{
-          link.title
-        }}</a>
-        <a v-else href="#">{{ link.title }}</a>
-
-        <ul v-if="link.childs.length" class="trans child-links">
-          <li class="child-link" v-for="child of link.childs" :key="child">
-            <a class="trans vazir" href="#"> {{ child }}</a>
-          </li>
-        </ul>
-      </li>
-    </ul>
-
-    <div class="nav-buttons flex-row vazir-bold">
-      <a class="trans-long" href="#">ورود</a>
-      <a class="trans-long" href="tel:02141807">
-        <span>۴۱۸۰۷</span>
-        <span><Telephone /></span
-      ></a>
-    </div>
-
-    <button @click="onToggle" class="nav-toggle"></button>
   </nav>
 </template>
 
@@ -141,9 +148,19 @@ export default {
   },
   methods: {
     onToggle() {
-      const navToggle = document.querySelector(".nav-toggle");
-      navToggle.classList.toggle("open");
-      console.log(navToggle);
+      const nav = document.getElementById("nav");
+      nav.classList.toggle("sidebar");
+
+      if (nav.classList.contains("sidebar")) {
+        document.body.style.height = "100vh";
+        document.body.style.overflow = "hidden";
+      } else {
+        document.body.style.height = "";
+        document.body.style.overflow = "";
+      }
+    },
+    onLinkClick(event) {
+      event.target.parentNode.classList.toggle("open");
     },
   },
 };
@@ -151,9 +168,10 @@ export default {
 
 <style scoped>
 #nav {
-  padding: 22px 17px 0 17px;
-  min-height: 70px;
-  width: var(--container-size);
+  top: 0;
+  right: 0;
+  min-height: 90px;
+  width: 100%;
 }
 #nav.fixed {
   position: fixed;
@@ -169,13 +187,11 @@ export default {
 #nav.hidden {
   transform: translateY(-100%);
 }
+.nav-container {
+  width: 85%;
+}
 .nav-toggle {
-  position: relative;
-  width: 30px;
-  height: 30px;
-  margin-left: 10px;
-  background-color: transparent;
-  border: none;
+  display: none;
 }
 .nav-toggle::after {
   top: 5px;
@@ -186,20 +202,37 @@ export default {
   position: absolute;
   right: 0;
   width: 100%;
-  height: 3px;
+  height: 4px;
   border-radius: 3px;
-  background-color: #288ed9;
+  background-color: var(--secondary);
   transform-origin: center;
-  transition: all 0.6s cubic-bezier(0.18, 0.89, 0.54, 1.93);
+  transition: all 0.5s cubic-bezier(0.18, 0.89, 0.54, 1.93);
 }
-.nav-toggle.open::before {
+#nav.fixed .nav-toggle::before,
+#nav.fixed .nav-toggle::after {
+  background-color: var(--accent);
+}
+.sidebar .nav-toggle::before {
   top: 50%;
-  transform: translateY(-200%) rotate(45deg);
+  transform: translateY(-150%) rotate(45deg);
 }
-.nav-toggle.open::after {
-  transform: translateY(150%) rotate(-45deg);
+.sidebar .nav-toggle::after {
+  transform: translateY(100%) rotate(-45deg);
 }
-
+#backdrop {
+  position: fixed;
+  display: block;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 200vh;
+  background-color: rgba(0, 91, 159, 0.2);
+  pointer-events: none;
+  opacity: 0;
+  transition: all 1.5s ease;
+}
 .nav-links {
   margin-right: 20px;
   flex-wrap: wrap;
@@ -208,6 +241,7 @@ export default {
 .nav-link {
   padding: 15px 10px;
   position: relative;
+  cursor: pointer;
 }
 .nav-link > a {
   font-size: 1rem;
@@ -277,9 +311,13 @@ export default {
 }
 .nav-logo {
   position: relative;
+  margin-right: 10px;
 }
 #nav.fixed .nav-logo > img {
   display: none;
+}
+.nav-buttons {
+  margin: 10px 0px 0px 10px;
 }
 .nav-buttons > a {
   margin-right: 10px;
@@ -344,9 +382,9 @@ export default {
 #nav.fixed .logo-path-svg {
   fill: var(--secondary);
 }
-@media (max-width: 1250px) {
-  #nav {
-    width: 95%;
+@media (max-width: 1300px) {
+  .nav-container {
+    width: 100%;
   }
 }
 @media (max-width: 1150px) {
@@ -358,6 +396,7 @@ export default {
   }
   .logo-svg {
     position: static;
+    margin-right: 10px;
   }
   .nav-buttons {
     flex-direction: column;
@@ -371,16 +410,141 @@ export default {
 }
 @media (max-width: 970px) {
   .nav-links {
+    all: unset;
+    position: fixed;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    padding-top: 80px;
+    z-index: 10;
+    width: var(--sidebar-width);
+    background-color: var(--secondary);
+    overflow-y: auto;
+    transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+    transform: translateX(100%);
+  }
+
+  .nav-link {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    overflow-x: hidden;
+  }
+  .nav-link > a {
+    padding: 15px 0;
+    margin-right: 25px;
+    cursor: pointer;
+    user-select: none;
+    color: var(--gray);
+  }
+  .nav-link.open a {
+    color: var(--accent);
+  }
+  .nav-link > a.with-child::after {
+    position: absolute;
+    left: 10%;
+    padding: 4px;
+    transform: translateY(-25%) rotate(45deg);
+  }
+  .nav-link.open .with-child::after {
+    color: var(--accent);
+    transform: rotate(225deg) !important;
+  }
+  .child-link a:hover {
+    transform: unset;
+  }
+
+  .child-links {
+    all: unset;
+    position: relative;
+    display: block;
+    height: 0;
+    transform-origin: top;
+    transform: scaleY(0);
+    overflow: hidden;
+    transition: all 0.4s ease-in-out;
+  }
+  .nav-link.open .child-links {
+    height: 100%;
+    transform: scaleY(1);
+  }
+  .child-links::after {
     display: none;
+  }
+  .child-link {
+    width: 100%;
+  }
+  .child-link > a {
+    color: var(--secondary) !important;
+    background-color: var(--accent);
+    border-radius: unset;
+  }
+  .child-link > a:hover {
+    box-shadow: unset;
+    color: var(--secondary);
+  }
+
+  #nav.fixed .nav-links {
+    height: calc(100vh - 90px);
+  }
+  .sidebar .nav-links {
+    transform: translateX(0);
   }
   #nav {
     min-height: 80px !important;
   }
   .nav-buttons {
-    display: none;
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    right: 0;
+    top: 0;
+    height: 80px;
+    width: var(--sidebar-width);
+    margin: 0;
+    z-index: 10;
+    background-color: var(--secondary);
+    transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1) !important;
+    transform: translateX(100%);
   }
+  .sidebar .nav-buttons {
+    transform: translateX(0);
+  }
+  .nav-buttons > a,
+  #nav.fixed .nav-buttons > a {
+    font-size: 20px;
+    margin-bottom: 0;
+    padding: 8px;
+    height: fit-content;
+    color: var(--secondary);
+    background-color: var(--accent);
+    border-radius: 50px;
+  }
+  .nav-buttons span {
+    color: var(--secondary);
+    background-color: var(--accent);
+  }
+  .telephone-svg {
+    fill: var(--secondary);
+  }
+
   #nav.fixed .nav-logo > img {
     display: none;
+  }
+  .nav-toggle {
+    display: block;
+    position: relative;
+    width: 32px;
+    height: 30px;
+    margin-left: 10px;
+    background-color: transparent;
+    border: none;
+  }
+  .sidebar #backdrop {
+    opacity: 1;
+    pointer-events: all;
   }
 }
 </style>

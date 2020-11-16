@@ -363,6 +363,7 @@ textarea {
   --accent: #0287ed;
   --gray: #777;
   --container-size: 85%;
+  --sidebar-width: 30vh;
 }
 
 @font-face {
@@ -510,3 +511,11 @@ a {
 .drop-shadow:hover {
   filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
 }
+
+@media (max-width: 970px) {
+  :root {
+    --container-size: 85%;
+    --sidebar-width: 40vh;
+  }
+}
+
