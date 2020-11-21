@@ -1,12 +1,12 @@
 <template>
-  <nav id="nav" class="flex-column align-center trans justify-center">
+  <header id="header" class="flex-column align-center trans justify-center">
     <div class="nav-container flex-row align-center justify-between">
       <div class="nav-logo">
         <Logo />
         <img src="@/assets/img/nav-logo.png" alt="parspack-logo" />
       </div>
 
-      <ul class="nav-links trans justify-between flex-row vazir">
+      <nav class="nav-links trans justify-between flex-row vazir">
         <li class="nav-link trans" v-for="(link, index) in links" :key="index">
           <a
             @click="onLinkClick"
@@ -22,7 +22,7 @@
             </li>
           </ul>
         </li>
-      </ul>
+      </nav>
 
       <div class="nav-buttons flex-row vazir-bold">
         <a class="trans-long" href="#">ورود</a>
@@ -36,7 +36,7 @@
 
       <button @click="onToggle" class="nav-toggle"></button>
     </div>
-  </nav>
+  </header>
 </template>
 
 <script>
@@ -100,7 +100,7 @@ export default {
     };
   },
   mounted() {
-    const nav = document.getElementById("nav");
+    const header = document.getElementById("header");
     const vh = Math.max(
       document.documentElement.clientHeight || 0,
       window.innerHeight || 0
@@ -113,26 +113,26 @@ export default {
       const scrollTop = window.pageYOffset;
       // element position to top
 
-      // const pageContentPos = nav.getBoundingClientRect().top;
+      // const pageContentPos = header.getBoundingClientRect().top;
 
       function scrollToTop() {
-        // show nav when scrolling to top
-        nav.classList.remove("hidden");
+        // show header when scrolling to top
+        header.classList.remove("hidden");
 
         // change position to block
         if (scrollTop <= vh) {
-          nav.classList.add("hidden");
+          header.classList.add("hidden");
         }
         if (scrollTop <= vh - 100) {
-          nav.classList.remove("fixed");
-          nav.classList.remove("hidden");
+          header.classList.remove("fixed");
+          header.classList.remove("hidden");
         }
       }
       function scrollToDown() {
         if (scrollTop >= vh) {
-          nav.classList.add("hidden");
+          header.classList.add("hidden");
           setTimeout(() => {
-            nav.classList.add("fixed");
+            header.classList.add("fixed");
           }, 300);
         }
       }
@@ -148,10 +148,10 @@ export default {
   },
   methods: {
     onToggle() {
-      const nav = document.getElementById("nav");
-      nav.classList.toggle("sidebar");
+      const header = document.getElementById("header");
+      header.classList.toggle("sidebar");
 
-      if (nav.classList.contains("sidebar")) {
+      if (header.classList.contains("sidebar")) {
         document.body.style.height = "100vh";
         document.body.style.overflow = "hidden";
       } else {
@@ -167,13 +167,16 @@ export default {
 </script>
 
 <style scoped>
-#nav {
+#header {
   top: 0;
   right: 0;
   min-height: 90px;
   width: 100%;
+  background-color: transparent;
+  position: absolute;
+  z-index: 5;
 }
-#nav.fixed {
+#header.fixed {
   position: fixed;
   top: 0;
   left: 0;
@@ -184,11 +187,12 @@ export default {
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
   background-color: var(--secondary);
 }
-#nav.hidden {
+#header.hidden {
   transform: translateY(-100%);
 }
 .nav-container {
   width: 85%;
+  background-color: transparent;
 }
 .nav-toggle {
   display: none;
@@ -208,8 +212,8 @@ export default {
   transform-origin: center;
   transition: all 0.5s cubic-bezier(0.18, 0.89, 0.54, 1.93);
 }
-#nav.fixed .nav-toggle::before,
-#nav.fixed .nav-toggle::after {
+#header.fixed .nav-toggle::before,
+#header.fixed .nav-toggle::after {
   background-color: var(--accent);
 }
 .sidebar .nav-toggle::before {
@@ -247,7 +251,7 @@ export default {
   font-size: 1rem;
   color: var(--secondary);
 }
-#nav.fixed .nav-link > a {
+#header.fixed .nav-link > a {
   color: var(--gray);
 }
 .nav-link > a.with-child::after {
@@ -313,11 +317,12 @@ export default {
   position: relative;
   margin-right: 10px;
 }
-#nav.fixed .nav-logo > img {
+#header.fixed .nav-logo > img {
   display: none;
 }
 .nav-buttons {
-  margin: 10px 0px 0px 10px;
+  margin-left: 10px;
+  margin-top: 10px;
 }
 .nav-buttons > a {
   margin-right: 10px;
@@ -326,7 +331,7 @@ export default {
   background-color: var(--secondary);
   border-radius: 50px;
 }
-#nav.fixed .nav-buttons > a {
+#header.fixed .nav-buttons > a {
   background-color: var(--accent);
 }
 .nav-buttons a,
@@ -336,8 +341,8 @@ export default {
   justify-content: center;
   color: var(--primary-light);
 }
-#nav.fixed .nav-buttons a,
-#nav.fixed .nav-buttons span {
+#header.fixed .nav-buttons a,
+#header.fixed .nav-buttons span {
   color: var(--secondary);
 }
 .nav-buttons span:first-child {
@@ -357,7 +362,7 @@ export default {
     transform: rotate(-15deg);
   }
 }
-#nav.fixed .telephone-svg {
+#header.fixed .telephone-svg {
   fill: var(--secondary);
 }
 .logo-svg {
@@ -366,20 +371,20 @@ export default {
   display: block;
   transition: all 300ms ease;
 }
-#nav.fixed .logo-svg {
+#header.fixed .logo-svg {
   position: static;
 }
 .logo-circle-svg {
   fill: var(--secondary);
   transition: all 2.5s ease;
 }
-#nav.fixed .logo-circle-svg {
+#header.fixed .logo-circle-svg {
   fill: var(--accent);
 }
 .logo-path-svg {
   fill: var(--accent);
 }
-#nav.fixed .logo-path-svg {
+#header.fixed .logo-path-svg {
   fill: var(--secondary);
 }
 @media (max-width: 1300px) {
@@ -391,7 +396,7 @@ export default {
   .nav-logo > img {
     display: none;
   }
-  #nav.fixed {
+  #header.fixed {
     padding: 5px;
   }
   .logo-svg {
@@ -420,8 +425,12 @@ export default {
     width: var(--sidebar-width);
     background-color: var(--secondary);
     overflow-y: auto;
+    box-shadow: 0 3px 26px 0 rgba(95, 170, 223, 0.4);
     transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
     transform: translateX(100%);
+  }
+  .sidebar .nav-links {
+    transform: translateX(0);
   }
 
   .nav-link {
@@ -460,7 +469,6 @@ export default {
     position: relative;
     display: block;
     height: 0;
-    transform-origin: top;
     transform: scaleY(0);
     overflow: hidden;
     transition: all 0.4s ease-in-out;
@@ -485,13 +493,7 @@ export default {
     color: var(--secondary);
   }
 
-  #nav.fixed .nav-links {
-    height: calc(100vh - 90px);
-  }
-  .sidebar .nav-links {
-    transform: translateX(0);
-  }
-  #nav {
+  #header {
     min-height: 80px !important;
   }
   .nav-buttons {
@@ -513,7 +515,7 @@ export default {
     transform: translateX(0);
   }
   .nav-buttons > a,
-  #nav.fixed .nav-buttons > a {
+  #header.fixed .nav-buttons > a {
     font-size: 20px;
     margin-bottom: 0;
     padding: 8px;
@@ -530,7 +532,7 @@ export default {
     fill: var(--secondary);
   }
 
-  #nav.fixed .nav-logo > img {
+  #header.fixed .nav-logo > img {
     display: none;
   }
   .nav-toggle {

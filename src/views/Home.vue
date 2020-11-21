@@ -1,9 +1,8 @@
 <template>
   <div class="home-page w100 rtl flex-column">
-    <header class="w100 flex-column align-center">
-      <Navigation />
-      <Showcase />
-    </header>
+    <Header />
+    <Showcase />
+    <Services />
     <p>
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis tempore
       provident reprehenderit repellat, veritatis iste rem architecto error sed
@@ -135,25 +134,23 @@
 </template>
 
 <script>
-import Navigation from "../components/Navigation";
+import Header from "../components/Header";
 import Showcase from "../components/Showcase";
+import Services from "../components/Services";
 
 export default {
   name: "Home",
   components: {
-    Navigation,
+    Header,
     Showcase,
+    Services,
   },
 };
 </script>
 
 <style scoped>
-header {
-  background: linear-gradient(45deg, #24bddf 0%, #0287ed 100%);
-  width: 100%;
-  height: 100vh;
-}
-.home-page{
+.home-page {
   overflow-x: hidden;
+  position: relative;
 }
 </style>
