@@ -1,8 +1,9 @@
 <template>
-  <div class="home-page w100 rtl flex-column">
+  <div class="home-page w100 rtl flex-column align-center">
     <Header />
     <Showcase />
     <Services />
+    <Features />
     <p>
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis tempore
       provident reprehenderit repellat, veritatis iste rem architecto error sed
@@ -137,6 +138,7 @@
 import Header from "../components/Header";
 import Showcase from "../components/Showcase";
 import Services from "../components/Services";
+import Features from "../components/Features";
 
 export default {
   name: "Home",
@@ -144,6 +146,7 @@ export default {
     Header,
     Showcase,
     Services,
+    Features
   },
 };
 </script>
