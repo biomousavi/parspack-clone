@@ -4,6 +4,7 @@
     <Showcase />
     <Services />
     <Features />
+    <Testimonials />
     <p>
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis tempore
       provident reprehenderit repellat, veritatis iste rem architecto error sed
@@ -139,6 +140,7 @@ import Header from "../components/Header";
 import Showcase from "../components/Showcase";
 import Services from "../components/Services";
 import Features from "../components/Features";
+import Testimonials from "../components/Testimonials";
 
 export default {
   name: "Home",
@@ -146,7 +148,8 @@ export default {
     Header,
     Showcase,
     Services,
-    Features
+    Features,
+    Testimonials
   },
 };
 </script>

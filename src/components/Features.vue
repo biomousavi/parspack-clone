@@ -112,16 +112,16 @@ a:first-child:hover svg {
 }
 
 @media (max-width: 620px) {
-h2 {
-  font-size: 19px;
-  word-spacing: -5px;
-}
-p {
-  margin: 2rem 0;
-  font-size: 16px;
-  color: var(--gray);
-}
+  h2 {
+    font-size: 19px;
+    word-spacing: -5px;
   }
+  p {
+    margin: 2rem 0;
+    font-size: 16px;
+    color: var(--gray);
+  }
+}
 
 .cls-1 {
   fill: url(#linear-gradient);

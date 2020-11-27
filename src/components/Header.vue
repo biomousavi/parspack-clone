@@ -432,7 +432,6 @@ export default {
   .sidebar .nav-links {
     transform: translateX(0);
   }
-
   .nav-link {
     position: relative;
     display: flex;
@@ -463,7 +462,6 @@ export default {
   .child-link a:hover {
     transform: unset;
   }
-
   .child-links {
     all: unset;
     position: relative;
@@ -493,8 +491,10 @@ export default {
     color: var(--secondary);
   }
 
-  #header {
-    min-height: 80px !important;
+  #header,
+  #header.fixed {
+    min-height: 70px !important;
+    height: 70px !important;
   }
   .nav-buttons {
     position: fixed;
