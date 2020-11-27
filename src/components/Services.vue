@@ -134,6 +134,7 @@ header > p {
   justify-content: space-between;
   align-items: center;
   transition: all 0.35s ease;
+  overflow: hidden;
   background-color: var(--secondary);
 }
 .card:hover {

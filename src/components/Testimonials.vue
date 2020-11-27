@@ -113,6 +113,7 @@ h2 {
 .testimonials > p {
   font-size: 16px;
   color: #98cdf2;
+  text-overflow: ellipsis;
 }
 .swiper-container {
   height: 200px;
@@ -184,7 +185,7 @@ a {
   background-color: var(--secondary);
   padding: 15px;
   border-radius: 40px;
-  margin: 2rem 0;
+  margin: 4rem 0;
 }
 a:hover svg {
   transform: translateX(-5px) scale(1.2);
