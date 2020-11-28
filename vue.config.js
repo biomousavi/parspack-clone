@@ -12,7 +12,11 @@ module.exports = {
       .use('vue-svg-loader')
       .loader('vue-svg-loader');
   },
-  devServer:{
+  devServer: {
     port: 8000
-  }
+  },
+  publicPath: process.env.NODE_ENV === 'production'
+    ? '/parspack/'
+    : '/'
+
 }
