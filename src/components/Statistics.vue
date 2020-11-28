@@ -20,6 +20,7 @@ export default {
 
 <style scoped>
 .statistics {
+  overflow: hidden;
   position: relative;
   background: linear-gradient(to bottom, #288ed9 0%, #106fb6 50%, #004c84 100%);
 }
@@ -40,16 +41,16 @@ header > p {
 svg {
   width: 80%;
   margin: 4rem 0;
-  animation: world-svg 5s  ease infinite ;
+  animation: world-svg 5s ease infinite;
 }
 
 @keyframes world-svg {
-  100%, 0% {
+  100%,
+  0% {
     transform: scale(1);
   }
-  50%{
+  50% {
     transform: scale(1.03);
-
   }
 }
 .world-line {
