@@ -1,5 +1,5 @@
 <template>
-  <section class="weblog">
+  <section class="weblog flex-column align-center">
     <header>
       <h2>وبلاگ پارس پک</h2>
       <p>اخبار و مقالات آموزشی هاست و سرور در وبلاگ پارس پک</p>
@@ -45,11 +45,18 @@
         </div>
       </article>
     </div>
+    <a class="footer-btn">مشاوره با کارشناسان <ArrowLeftSVG /> </a>
   </section>
 </template>
 
 <script>
-export default {};
+import ArrowLeftSVG from "../assets/img/ArrowLeft.svg";
+
+export default {
+  components:{
+    ArrowLeftSVG
+  }
+};
 </script>
 
 <style scoped>
@@ -95,8 +102,7 @@ article > a {
   margin-bottom: 2.5rem;
   color: gray;
 }
-
-.text {
+footer-btn .text {
   color: var(--gray);
   padding-bottom: 1rem;
   word-spacing: -5px;
@@ -145,6 +151,22 @@ article:hover .card-footer {
 .card-footer > a:hover {
   background-color: var(--primary);
   transform: scale(1.1);
+}
+.footer-btn svg {
+  width: 12px;
+  fill: var(--secondary);
+  transition: all 0.3s ease;
+}
+.footer-btn {
+  margin: 2rem 0;
+  color: var(--secondary);
+  background-color: var(--accent);
+  padding: 15px;
+  border-radius: 40px;
+  margin: 4rem 0;
+}
+.footer-btn:hover svg {
+  transform: translateX(-5px) scale(1.2);
 }
 
 @media (max-width: 950px) {

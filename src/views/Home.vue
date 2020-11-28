@@ -6,6 +6,7 @@
     <Features />
     <Testimonials />
     <Weblog />
+    <Statistics />
     <p>
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis tempore
       provident reprehenderit repellat, veritatis iste rem architecto error sed
@@ -143,6 +144,7 @@ import Services from "../components/Services";
 import Features from "../components/Features";
 import Testimonials from "../components/Testimonials";
 import Weblog from "../components/Weblog";
+import Statistics from "../components/Statistics.vue";
 
 export default {
   name: "Home",
@@ -153,6 +155,7 @@ export default {
     Features,
     Testimonials,
     Weblog,
+    Statistics
   },
 };
 </script>
