@@ -366,48 +366,8 @@ textarea {
   --sidebar-width: 30vh;
 }
 
-@font-face {
-  font-family: Quicksand-Bold;
-  src: url("./assets/fonts/Quicksand/Quicksand-Bold.ttf");
-}
-
-@font-face {
-  font-family: Quicksand-Light;
-  src: url("./assets/fonts/Quicksand/Quicksand-Light.ttf");
-}
-
-@font-face {
-  font-family: Quicksand-Medium;
-  src: url("./assets/fonts/Quicksand/Quicksand-Medium.ttf");
-}
-
-@font-face {
-  font-family: Quicksand-Regular;
-  src: url("./assets/fonts/Quicksand/Quicksand-Regular.ttf");
-}
-
-@font-face {
-  font-family: Vazir-Bold;
-  src: url("./assets/fonts/Vazir/Vazir-Bold.ttf");
-}
-
-@font-face {
-  font-family: Vazir-Light;
-  src: url("./assets/fonts/Vazir/Vazir-Light.ttf");
-}
-
-@font-face {
-  font-family: Vazir-Medium;
-  src: url("./assets/fonts/Vazir/Vazir-Medium.ttf");
-}
-
-@font-face {
-  font-family: Vazir;
-  src: url("./assets/fonts/Vazir/Vazir.ttf");
-}
-
 * {
-  font-family: Quicksand-Regular, "Courier New", Courier, monospace;
+  font-family: 'Quicksand', sans-serif, "Courier New", Courier, monospace;
 }
 
 body {
@@ -450,16 +410,13 @@ a {
   width: 100%;
 }
 
-.quicksand-bold {
-  font-family: Quicksand-Bold;
-}
-
 .vazir-bold {
-  font-family: Vazir-Bold;
+  font-family: 'Vazir';
+  font-weight: bold;
 }
 
 .vazir {
-  font-family: Vazir;
+  font-family: 'Vazir';
 }
 
 .flex-column {

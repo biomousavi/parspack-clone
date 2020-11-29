@@ -321,5 +321,8 @@ export default {
   .header-text {
     font-size: 25px;
   }
+  .footer .right {
+    padding: 12px;
+  }
 }
 </style>
