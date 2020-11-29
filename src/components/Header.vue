@@ -17,7 +17,12 @@
           <a v-else>{{ link.title }}</a>
 
           <ul v-if="link.childs.length" class="trans child-links">
-            <li class="child-link" v-for="child of link.childs" :key="child">
+            <li
+              class="child-link"
+              @click="onToggle"
+              v-for="child of link.childs"
+              :key="child"
+            >
               <a class="trans vazir" href="#"> {{ child }}</a>
             </li>
           </ul>
@@ -149,7 +154,14 @@ export default {
   methods: {
     onToggle() {
       const header = document.getElementById("header");
-      header.classList.toggle("sidebar");
+      const width =
+        window.innerWidth ||
+        document.documentElement.clientWidth ||
+        document.body.clientWidth;
+
+      if (width <= 970) {
+        header.classList.toggle("sidebar");
+      }
 
       if (header.classList.contains("sidebar")) {
         document.body.style.height = "100vh";
@@ -295,11 +307,13 @@ export default {
 }
 .child-link {
   width: 100%;
+  z-index: 100;
 }
 .child-link a {
   display: block; /* defaul inline-block */
   padding: 20px 25px;
   border-radius: 6px;
+  z-index: 100;
   font-weight: normal;
   color: var(--gray);
   background-color: var(--secondary);

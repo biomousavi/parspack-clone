@@ -126,7 +126,7 @@ export default {
 .showcase-card .header {
   margin-bottom: 1.5rem;
   font-size: 30px;
-  word-spacing: -8px;
+  word-spacing: -4px;
 }
 .header > span {
   padding-top: 10px;
@@ -316,7 +316,7 @@ export default {
 @media (max-width: 400px) {
   .showcase-card > p {
     font-size: 15px;
-    word-spacing: -2px;
+    word-spacing: -1px;
   }
   .header-text {
     font-size: 25px;
