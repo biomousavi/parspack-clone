@@ -16,7 +16,7 @@ module.exports = {
     port: 8000
   },
   publicPath: process.env.NODE_ENV === 'production'
-    ? '/parspack/'
+    ? '/parspack-clone/'
     : '/'
 
 }
